@@ -6,7 +6,7 @@ This script is an accessory script to edit segmentation errors caused by extra t
 For access to the Placenta Morphology Analysis script, see our GitHub at: https://github.com/Kriegsfeld-Lab/Placenta-Morphology-Analysis-2021.git
 
 There are three conditions that we found in the results of the Placenta Morphology Analysis script that we believed necessitated an editor script.
-In order to use the editor script, the LZ and JZ need to have been correctly segmented by the Placenta Analysis code. 
+In order to use the editor script, the LZ and JZ need to have been correctly segmented by the Placenta Morphology Analysis code. 
 The comon errors are as follows: 1) the decidua (DC) tissue was connected to the labrynth zone (LZ) tissue in the LZ segmentation, 
 2) the junctional zone (JZ) tissue was connected to chorionic plate tissue in the JZ segmentation, or 3) extra tissue such as chorionic 
 plate or yolk sac was present in the LZ segmentation that would likely throw off the results for the area and perimeter of the LZ.

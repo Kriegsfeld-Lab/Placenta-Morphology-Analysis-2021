@@ -1,0 +1,18 @@
+Placenta Editor
+Written by Oscar Becerra
+For questions, contact Dr. Lance Kriegsfeld at kriegsfeld@berkeley.edu
+
+This script is an accessory script to edit segmentation errors caused by extra tissue in our main script, "Placenta Analysis".
+For access to the Placenta Analysis script, see our GitHub at: https://github.com/Kriegsfeld-Lab/Placenta-Analysis-2021.git
+
+There are three conditions that we found in the results of the Placenta Analysis script that we believed necessitated an editor script.
+In order to use the editor script, the LZ and JZ need to have been correctly segmented by the Placenta Analysis code. 
+The comon errors are as follows: 1) the decidua (DC) tissue was connected to the labrynth zone (LZ) tissue in the LZ segmentation, 
+2) the junctional zone (JZ) tissue was connected to chorionic plate tissue in the JZ segmentation, or 3) extra tissue such as chorionic 
+plate or yolk sac was present in the LZ segmentation that would likely throw off the results for the area and perimeter of the LZ.
+ 
+To remedy these issues, we created this accessory script to allow user input for excess tissue removal. Specifically, this code 
+asks the user which issue they are experiencing (1, 2, or 3) and allows the user to trace the tissue that they would like to be removed.
+The code also re-runs the calculations that will be affected by the tissue removal and prints a .csv file with the new values.
+These values are in the same order as the values printed from "Placenta Analysis", with 0s as placeholders for any values that did not 
+change with the new calculations. To use the code, edit the file directory pathways in lines 6, 124, 228, and 303.

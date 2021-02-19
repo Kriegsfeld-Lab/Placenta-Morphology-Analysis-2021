@@ -1,0 +1,68 @@
+Placenta Script
+Written by Oscar Becerra
+For questions, contact Dr. Lance Kriegsfeld at kriegsfeld@berkeley.edu
+
+This MATLAB script was made for a project at UC Berkeley that analyzed histological data from mouse placenta cross-sections stained 
+with hematoxylin and eosin-y (H&E). The script uses the colors characteristic of placental zones (labrynth [LZ], junctional [JZ], 
+and decidua [DC]) stained with H&E to separate the zones from one another and calculate area, perimeter, and percent of the area 
+that is tissue (as opposed to background/holes in the tissue). These results are saved as pixel counts in a .csv file in a specified
+folder along with photos of the tissue cut outs of each zone and photos of the perimeter of each zone. 
+
+The results in the .csv file are saved in unmarked rows, the labels of which are as follows. Descriptions are provided in parentheses: 
+LZ Size				(Pixel count for pixels that contain tissue. To get total area within the zone perimeter, add this and Voids LZ)	
+JZ Size				(Pixel count for pixels that contain tissue. To get total area within the zone perimeter, add this and Voids JZ)
+DC_Size				(Pixel count for pixels that contain tissue. To get total area within the zone perimeter, add this and Voids DC)
+Voids LZ			(Pixel count for area within LZ that is not tissue [i.e., holes within the tissue])
+Voids JZ			(Pixel count for area within JZ that is not tissue [i.e., holes within the tissue])
+Voids DC			(Pixel count for area within DC that is not tissue [i.e., holes within the tissue])
+PercentMissing_LZ	(Equivalent to [Voids LZ/(Voids LZ + LZ Size)]*100 to get what percent of the LZ area is empty space) 
+PercentMissing_JZ	(Equivalent to [Voids JZ/(Voids JZ + JZ Size)]*100 to get what percent of the JZ area is empty space) 
+PercentMissing_DC	(Equivalent to [Voids DC/(Voids DC + DC Size)]*100 to get what percent of the DC area is empty space) 
+LZ_Perimeter		(Pixel count for the perimeter length of the LZ)
+JZ_Perimeter		(Pixel count for the perimeter length of the JZ)
+DC_Perimeter		(Pixel count for the perimeter length of the DC)
+LineDistance		(Pixel count for the overlap of the LZ perimeter and JZ perimeter. This gives you the length of their junction)
+
+Important note: The original picture is scaled down by 1/4 (line 38). Therefore, the pixel counts are 1/4 of the real pixel count. 
+To convert pixels to mm based on your microscope's output resolution, you must first multiply these results by 4.
+
+To use the code: 
+1. Edit the directory in line 18 to the directory path where the photos to be analyzed are on your computer. Make sure it ends with 
+	a backslash \.
+2. Edit the directory in line 426 to the directory path where you want the output folder to be written. Make sure it ends with a 
+	backslash \.
+3. Press run.
+4. In the command window, you will be asked how many photos you want to run. You can run photos 1 at a time or choose to run 
+	multiple photos in a row. If you choose to run more than 1 photo, the code will run in its entirety for the first photo and 
+	then prompt you to input the user input for the following photos, until you have analyzed the number of photos selected in 
+	this step. 
+5. The code will prompt you for the name of the .tif file you are trying to analyze. Enter the name of the file without quotations 
+	and excluding the ".tif" tag. I.e., to run a photo named 125A_1.tif, type: 125A_1 and then push enter. 
+6. The code will begin to run and soon it will create a pop-up window with 8 images. The majority of these images will be very 
+	dark, but 1 should stand out. Type the number corresponding to that box/photo into the command window. The numbers are 
+	assigned to the boxes from 1 to 8 from left to right on the top line and then continue on the second line, like reading 
+	a book in English. 
+7. The code will then bring up a new pop up with 8 new photos. These photos pick out different color profiles from the original image. 
+	You'll notice that each of the zones (LZ, JZ, and DC) stand out most in a particular 1 or 2 of these photos. When prompted, 
+	choose the photo in the pop up (1 to 8) that best represents each zone. You can choose the same photo for multiple zones 
+	(common for LZ and DC).
+8. After you choose which photos correspond to each zone, a window will pop up showing the photo you chose for the LZ and you 
+	will be prompted to roughly trace the region that represents just the LZ. You will likely see some pixels highlighted outside 
+	of the LZ, which is why the code requires you to trace the appropriate area. Once you lift your cursor, the trace will be 
+	finished and the window should collapse.
+9. Repeat step 8 for the two following pop-up windows, tracing for the JZ and DC, respectively.
+10. After your final trace (for the DC), the code will begin processing the photo to segment the LZ, JZ, and DC from one another. 
+	This step may take 2-25 minutes or longer depending on the processing power of your computer.
+11. Once the code is finished, it will print all the output files into a folder with the same name as the image name you entered 
+	in step 5. The code will also create pop-up windows for the segmentations of the LZ, JZ, and DC. You can close these without 
+	saving, as they are saved in the output folder.
+12. If you rerun the code for the same photo, it will overwrite the output photo of your previous run.    
+
+Note: If the code runs and doesn't segment the zones properly, it's possible that the photos you chose for each zone in step 7 
+above were not the best representation of each zone. Alternatively, your tracing in step 8 may have misled the code. In some 
+instances, you might need to rerun the photo to get the proper segmentation.
+
+Troubleshooting: We noticed a series of common issues regarding the segmentation of the zones. Namely, 1) extra tissue such as 
+chorionic plate or yolk sac was included in the LZ segmentation, 2) DC was included in the LZ segmentation, 3) chorionic plate was 
+included in the JZ segmentation, or some combination of these 3. To solve these issues, we created an accessory script titled 
+"Placenta Editor". For more information about this script, please read the Placenta Editor README file. 

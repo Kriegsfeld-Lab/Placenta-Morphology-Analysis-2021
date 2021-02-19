@@ -15,7 +15,7 @@ fprintf('Code Started at %s\n', datestr(now,'HH:MM:SS'))
 %Creating name for Script Run
 Title = File_Name(Script_Cycle,:);
 %%
-PlacentaDirectory = 'C:\Users\samfi\Desktop\downloads\';          %choose directory where input photo exists
+PlacentaDirectory = 'C:\Users\';          %choose directory where input photo exists
 PlacentaName = [PlacentaDirectory Title]; %here
 ImageType = '.tif';
 PlacentaFile = [PlacentaName ImageType];
@@ -423,7 +423,7 @@ LineDistance = bwarea(Binary_Difference);
 mkdir(Title);
 BackSlash = '\';
 TitleDirectory = [Title BackSlash]; %here
-DirectoryName = 'C:\Users\samfi\Desktop\downloads\';        %choose directory for output folder
+DirectoryName = 'C:\Users\';        %choose directory for output folder
 FileName = [DirectoryName TitleDirectory];
 
 

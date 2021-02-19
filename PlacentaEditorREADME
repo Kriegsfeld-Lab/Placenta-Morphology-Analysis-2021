@@ -14,5 +14,5 @@ plate or yolk sac was present in the LZ segmentation that would likely throw off
 To remedy these issues, we created this accessory script to allow user input for excess tissue removal. Specifically, this code 
 asks the user which issue they are experiencing (1, 2, or 3) and allows the user to trace the tissue that they would like to be removed.
 The code also re-runs the calculations that will be affected by the tissue removal and prints a .csv file with the new values.
-These values are in the same order as the values printed from "Placenta Analysis", with 0s as placeholders for any values that did not 
+These values are in the same order as the values printed from "Placenta Morphology Analysis", with 0s as placeholders for any values that did not 
 change with the new calculations. To use the code, edit the file directory pathways in lines 6, 124, 228, and 303.
